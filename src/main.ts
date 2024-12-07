@@ -55,6 +55,7 @@ function showNextPrediction() {
   clearTimeout(timeoutId);
   answer?.classList.add("hide");
   logo?.classList.add("hide");
+  main?.classList.add("shake");
   timeoutId = setTimeout(() => {
     let pos = Math.round(Math.random() * (options.length - 1));
     const text = options[pos] || options[0];
@@ -65,6 +66,8 @@ function showNextPrediction() {
     }
     (answerText as HTMLElement).innerText = text;
     answer?.classList.remove("hide");
+    main?.classList.remove("slide-in-elliptic-top-fwd");
+    main?.classList.remove("shake");
   }, 1200);
 }
 

@@ -1,5 +1,5 @@
 import "./style.css";
-// import Shake from "shake.js";
+import Shake from "shake.js";
 
 const fontSizethreshold = 90;
 
@@ -43,7 +43,7 @@ const options = [
   "По-настоящему богатая жизнь невозможна без любви.",
 ];
 
-// console.log(Shake);
+console.log(Shake);
 
 const main = document.querySelector("#ball");
 const answer = document.querySelector("#answer");
@@ -70,11 +70,11 @@ function showNextPrediction() {
 
 main?.addEventListener("click", showNextPrediction);
 
-// var myShakeEvent = new Shake({
-//   threshold: 15, // optional shake strength threshold
-//   timeout: 400, // optional, determines the frequency of event generation
-// });
+var myShakeEvent = new Shake({
+  threshold: 15, // optional shake strength threshold
+  timeout: 400, // optional, determines the frequency of event generation
+});
 
-// myShakeEvent.start();
+myShakeEvent.start();
 
-// window.addEventListener("shake", showNextPrediction, false);
+window.addEventListener("shake", showNextPrediction, false);

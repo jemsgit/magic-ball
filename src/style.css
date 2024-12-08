@@ -12,15 +12,22 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --corn-pos: -10px;
+  padding: 0;
+  margin: 0;
 }
 
 body {
   text-align: center;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #5091dd 0%, #030617 100%);
+  padding: 20px 0;
+  margin: 0;
 }
 
 h1 {
   line-height: 1.6rem;
   font-size: 1.6rem;
+  margin-top: 0;
 }
 
 .ball {
@@ -33,7 +40,7 @@ h1 {
   min-width: 340px;
   min-height: 340px;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgb(244 242 0 / 30%);
+  box-shadow: 2px 20px 20px rgb(28 28 28 / 47%);
   background-image: url(/public/magic_ball.png);
   background-size: 100%;
   background-position: center center;
@@ -146,7 +153,8 @@ h1 {
   border-radius: 50%;
   top: 0;
   left: 0;
-  box-shadow: inset 12px -12px 14px 2px black;
+  box-shadow: inset 12px -12px 20px 2px black;
+  z-index: -1;
 }
 
 .ball.shake {
@@ -185,6 +193,7 @@ h1 {
   background-size: 100%;
   background-repeat: no-repeat;
   opacity: 1;
+  cursor: pointer;
 }
 .corner {
   position: absolute;

@@ -4,7 +4,7 @@ import { createSnow, showSnow } from "pure-snow.js";
 import magSound from "../public/wob.mp3";
 import jb from "../public/jb.m4a";
 
-interface DeviceOrientationEventiOS extends DeviceOrientationEvent {
+interface DeviceMotionEventiOs extends DeviceMotionEvent {
   requestPermission?: () => Promise<"granted" | "denied">;
 }
 
@@ -122,9 +122,8 @@ setTimeout(() => {
   main?.classList.remove("invisible");
 }, 1000);
 
-const requestPermission = (
-  DeviceOrientationEvent as unknown as DeviceOrientationEventiOS
-)?.requestPermission;
+const requestPermission = (DeviceMotionEvent as unknown as DeviceMotionEventiOs)
+  ?.requestPermission;
 
 if (typeof requestPermission === "function") {
   requestPermission()

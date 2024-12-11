@@ -122,3 +122,7 @@ setTimeout(() => {
   createSnow(); // creates snowflakes and generate css for them
   showSnow(true); // snow can be disabled using showSnow function
 }, 2000);
+
+setTimeout(() => {
+  main?.classList.remove("invisible");
+}, 1000);

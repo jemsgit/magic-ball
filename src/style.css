@@ -132,7 +132,7 @@ h1 {
   animation: fadedown 1s;
 }
 
-.answer.invisible {
+.invisible {
   display: none;
 }
 

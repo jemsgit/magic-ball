@@ -4,6 +4,10 @@ import { createSnow, showSnow } from "pure-snow.js";
 import magSound from "../public/wob.mp3";
 import jb from "../public/jb.m4a";
 
+interface DeviceOrientationEventiOS extends DeviceOrientationEvent {
+  requestPermission?: () => Promise<"granted" | "denied">;
+}
+
 const mag = new Audio(magSound);
 const sound = new Audio(jb);
 sound.loop = true;
@@ -109,15 +113,6 @@ function showNextPrediction() {
 
 main?.addEventListener("click", showNextPrediction);
 
-var myShakeEvent = new Shake({
-  threshold: 15, // optional shake strength threshold
-  timeout: 400, // optional, determines the frequency of event generation
-});
-
-myShakeEvent.start();
-
-window.addEventListener("shake", showNextPrediction, false);
-
 setTimeout(() => {
   createSnow(); // creates snowflakes and generate css for them
   showSnow(true); // snow can be disabled using showSnow function
@@ -126,3 +121,33 @@ setTimeout(() => {
 setTimeout(() => {
   main?.classList.remove("invisible");
 }, 1000);
+
+const requestPermission = (
+  DeviceOrientationEvent as unknown as DeviceOrientationEventiOS
+)?.requestPermission;
+
+if (typeof requestPermission === "function") {
+  requestPermission()
+    .then((permissionState) => {
+      if (permissionState === "granted") {
+        let myShakeEvent = new Shake({
+          threshold: 15, // optional shake strength threshold
+          timeout: 400, // optional, determines the frequency of event generation
+        });
+
+        myShakeEvent.start();
+
+        window.addEventListener("shake", showNextPrediction, false);
+      }
+    })
+    .catch(console.error);
+} else {
+  let myShakeEvent = new Shake({
+    threshold: 15, // optional shake strength threshold
+    timeout: 400, // optional, determines the frequency of event generation
+  });
+
+  myShakeEvent.start();
+
+  window.addEventListener("shake", showNextPrediction, false);
+}

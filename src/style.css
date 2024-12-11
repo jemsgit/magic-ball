@@ -22,6 +22,7 @@ body {
   background: radial-gradient(ellipse at bottom, #5091dd 0%, #030617 100%);
   padding: 0;
   margin: 0;
+  overflow-x: hidden;
 }
 
 h1 {

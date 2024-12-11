@@ -22,7 +22,6 @@ body {
   background: radial-gradient(ellipse at bottom, #5091dd 0%, #030617 100%);
   padding: 0;
   margin: 0;
-  overflow-x: hidden;
 }
 
 h1 {
@@ -265,6 +264,12 @@ h1 {
   filter: drop-shadow(0 0 10px white);
 }
 
+#snow {
+  overflow-x: clip;
+  max-width: 100vw;
+  position: relative;
+}
+
 .header {
   background: black;
   padding: 5px 20px;
@@ -319,6 +324,7 @@ h1 {
     width: 32px;
     height: 32px;
     margin-top: 5px;
+    z-index: 10;
   }
 
   .ball {

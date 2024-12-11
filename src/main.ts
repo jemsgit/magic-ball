@@ -6,6 +6,7 @@ import jb from "../public/jb.m4a";
 
 const mag = new Audio(magSound);
 const sound = new Audio(jb);
+sound.loop = true;
 
 let isPlaying = false;
 
@@ -62,9 +63,6 @@ const music = document.querySelector("#music-toggle");
 let timeoutId: number | undefined = undefined;
 let timeoutId2: number | undefined = undefined;
 
-createSnow(); // creates snowflakes and generate css for them
-showSnow(true); // snow can be disabled using showSnow function
-
 music?.addEventListener("click", () => {
   if (isPlaying) {
     sound.pause();
@@ -119,3 +117,8 @@ var myShakeEvent = new Shake({
 myShakeEvent.start();
 
 window.addEventListener("shake", showNextPrediction, false);
+
+setTimeout(() => {
+  createSnow(); // creates snowflakes and generate css for them
+  showSnow(true); // snow can be disabled using showSnow function
+}, 2000);

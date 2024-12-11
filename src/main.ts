@@ -1,7 +1,15 @@
 import "./style.css";
 import Shake from "shake.js";
+import { createSnow, showSnow } from "pure-snow.js";
+import magSound from "../public/wob.mp3";
+import jb from "../public/jb.m4a";
 
-const fontSizethreshold = 90;
+const mag = new Audio(magSound);
+const sound = new Audio(jb);
+
+let isPlaying = false;
+
+const fontSizethreshold = 85;
 
 const options = [
   "Ваша давняя мечта сбудется.",
@@ -43,19 +51,49 @@ const options = [
   "По-настоящему богатая жизнь невозможна без любви.",
 ];
 
-console.log(Shake);
-
 const main = document.querySelector("#ball");
 const answer = document.querySelector("#answer");
 const answerText = document.querySelector("#answer-text");
 const logo = document.querySelector("#logo");
+const soundImg = document.querySelector("#sound");
+const muteImg = document.querySelector("#mute");
+const textbox = document.querySelector("#textbox");
+const music = document.querySelector("#music-toggle");
 let timeoutId: number | undefined = undefined;
+let timeoutId2: number | undefined = undefined;
+
+createSnow(); // creates snowflakes and generate css for them
+showSnow(true); // snow can be disabled using showSnow function
+
+music?.addEventListener("click", () => {
+  if (isPlaying) {
+    sound.pause();
+    isPlaying = false;
+  } else {
+    sound.play();
+    isPlaying = true;
+  }
+  soundImg?.classList.toggle("invisible");
+  muteImg?.classList.toggle("invisible");
+});
 
 function showNextPrediction() {
   clearTimeout(timeoutId);
+  clearTimeout(timeoutId2);
   answer?.classList.add("hide");
   logo?.classList.add("hide");
   main?.classList.add("shake");
+  textbox?.classList.add("hide-text-area");
+
+  timeoutId2 = setTimeout(() => {
+    textbox?.classList.remove("hide-text-area");
+    try {
+      mag.play();
+    } catch (e) {
+      console.log(e);
+    }
+  }, 900);
+
   timeoutId = setTimeout(() => {
     let pos = Math.round(Math.random() * (options.length - 1));
     const text = options[pos] || options[0];

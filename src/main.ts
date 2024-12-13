@@ -66,6 +66,7 @@ function showNextPrediction() {
   logo?.classList.add("hide");
   main?.classList.add("shake");
   textbox?.classList.add("hide-text-area");
+  textbox?.classList.add("black");
 
   timeoutId2 = setTimeout(() => {
     textbox?.classList.remove("hide-text-area");

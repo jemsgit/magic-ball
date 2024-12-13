@@ -255,6 +255,10 @@ h1 {
   background: rgb(73 28 232);
 }
 
+.ball-textbox.black {
+  background: rgb(73 28 232);
+}
+
 .snowflake {
   position: absolute;
   width: 10px;

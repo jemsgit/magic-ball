@@ -2,17 +2,12 @@ import "./style.css";
 import Shake from "shake.js";
 import { createSnow, showSnow } from "pure-snow.js";
 import magSound from "../public/wob.mp3";
-import jb from "../public/jb.m4a";
 
 interface DeviceMotionEventiOs extends DeviceMotionEvent {
   requestPermission?: () => Promise<"granted" | "denied">;
 }
 
 const mag = new Audio(magSound);
-const sound = new Audio(jb);
-sound.loop = true;
-
-let isPlaying = false;
 
 const fontSizethreshold = 85;
 
@@ -60,24 +55,9 @@ const main = document.querySelector("#ball");
 const answer = document.querySelector("#answer");
 const answerText = document.querySelector("#answer-text");
 const logo = document.querySelector("#logo");
-const soundImg = document.querySelector("#sound");
-const muteImg = document.querySelector("#mute");
 const textbox = document.querySelector("#textbox");
-const music = document.querySelector("#music-toggle");
 let timeoutId: number | undefined = undefined;
 let timeoutId2: number | undefined = undefined;
-
-music?.addEventListener("click", () => {
-  if (isPlaying) {
-    sound.pause();
-    isPlaying = false;
-  } else {
-    sound.play();
-    isPlaying = true;
-  }
-  soundImg?.classList.toggle("invisible");
-  muteImg?.classList.toggle("invisible");
-});
 
 function showNextPrediction() {
   clearTimeout(timeoutId);

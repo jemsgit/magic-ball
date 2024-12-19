@@ -152,7 +152,7 @@ h1 {
   animation: fadedown 1s;
 }
 
-.invisible {
+.ball.invisible {
   opacity: 0;
 }
 
@@ -298,10 +298,6 @@ h1 {
 
 .header-text {
   flex: 1 1 auto;
-}
-
-.invisible {
-  display: none;
 }
 
 .music {

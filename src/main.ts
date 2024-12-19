@@ -87,7 +87,6 @@ function showNextPrediction() {
     }
     (answerText as HTMLElement).innerText = text;
     answer?.classList.remove("hide");
-    main?.classList.remove("slide-in-elliptic-top-fwd");
     main?.classList.remove("shake");
   }, 1200);
 }

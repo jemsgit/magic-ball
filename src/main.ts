@@ -8,6 +8,7 @@ interface DeviceMotionEventiOs extends DeviceMotionEvent {
 }
 
 const mag = new Audio(magSound);
+mag.volume = 0.6;
 
 const fontSizethreshold = 85;
 
@@ -59,7 +60,12 @@ const textbox = document.querySelector("#textbox");
 let timeoutId: number | undefined = undefined;
 let timeoutId2: number | undefined = undefined;
 
-function showNextPrediction() {
+function showNextPrediction(e: Event) {
+  try {
+    e.stopPropagation();
+  } catch (error) {
+    console.log(error);
+  }
   clearTimeout(timeoutId);
   clearTimeout(timeoutId2);
   answer?.classList.add("hide");

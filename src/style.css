@@ -18,14 +18,11 @@
   margin: 0;
 }
 
-@supports (background-image: url("/public/bg3.webp")) {
-  background-image: url("logo.webp");
-}
-
 body {
   text-align: center;
   min-height: 120vh;
   height: 120vh;
+  overflow: hidden;
   background: radial-gradient(ellipse at bottom, #5091dd 0%, #030617 100%);
   background-image: url("/public/bg3.png");
   /* background-size: 1958px 1224px; */
@@ -61,7 +58,7 @@ h1 {
   max-width: 400px;
   min-width: 340px;
   min-height: 340px;
-  background-image: url(/public/ball2.png);
+  background-image: url(/public/ball3.png);
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -347,9 +344,17 @@ h1 {
   }
   body {
     background-position: center -60px;
+    background-image: url("/public/bg3_m.png");
+    @supports (background-image: url("/public/bg3_m.webp")) {
+      background-image: url("/public/bg3_m.webp");
+    }
   }
   .ball {
     top: 125px;
+  }
+
+  .ball-textbox {
+    top: 39%;
   }
 }
 

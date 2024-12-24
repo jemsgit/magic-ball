@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === "production";
-  let base = isProduction ? "/ball/" : "/";
+  let base = isProduction ? "/" : "/";
 
   return {
     base: base,

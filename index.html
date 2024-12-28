@@ -10,7 +10,7 @@
     <meta property="og:title" content="Магический шар Coder Edition" />
     <meta
       property="og:description"
-      content="Узнаю, что приготовил тебе наступающий год"
+      content="Узнай, что приготовил тебе наступающий год"
     />
     <meta property="og:url" content="https://jem-space.ru/ball" />
     <meta property="og:type" content="website" />
@@ -19,43 +19,44 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <title>Store live: Мониторинга статуса заказов</title>
   </head>
   <body>
-    <div id="snow"></div>
-    <div id="app">
-      <section class="header">
-        <div class="title">
-          <h1>Магический шар 2025</h1>
-          <span>Coder Edition</span>
-        </div>
-        <a href="https://t.me/five_a_m" target="_blank"
-          ><img src="/public/telegram.png"
-        /></a>
-      </section>
-      <p>
-        Потряси (если у тебя Android) или нажми на шар, чтобы получить
-        предсказание
-      </p>
+    <div>
+      <div id="snow"></div>
+      <div id="app">
+        <section class="header">
+          <div class="title">
+            <h1>Магический шар 2025</h1>
+            <span>Coder Edition</span>
+          </div>
+          <a href="https://t.me/five_a_m" target="_blank"
+            ><img src="/public/telegram.png"
+          /></a>
+        </section>
+        <p>
+          Потряси (если у тебя Android) или нажми на шар, чтобы получить
+          предсказание
+        </p>
 
-      <div class="ball-wrapper">
-        <div class="ball slide-in-elliptic-top-fwd" id="ball">
-          <div class="ball-textbox" id="textbox">
-            <div class="initial" id="logo"></div>
-            <div class="answer up hide" id="answer">
-              <div class="corner corner1"></div>
-              <div class="corner corner2"></div>
-              <div class="corner corner3"></div>
-              <div class="corner corner4"></div>
-              <div id="answer-text"></div>
+        <div class="ball-wrapper">
+          <div class="ball slide-in-elliptic-top-fwd" id="ball">
+            <div class="ball-textbox" id="textbox">
+              <div class="initial" id="logo"></div>
+              <div class="answer up hide" id="answer">
+                <div class="corner corner1"></div>
+                <div class="corner corner2"></div>
+                <div class="corner corner3"></div>
+                <div class="corner corner4"></div>
+                <div id="answer-text"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <a href="#" class="share-link invisible" id="share">Поделиться</a>
+      <a href="#" class="share-link invisible" id="download">Скачать</a>
     </div>
-    <a href="#" class="share-link invisible" id="share">Поделиться</a>
-    <a href="#" class="share-link invisible" id="download">Скачать</a>
+
     <footer>Made with ❤️ by <a href="https://t.me/jem_jem">jem_jem</a></footer>
 
     <script type="module" src="/src/main.ts"></script>

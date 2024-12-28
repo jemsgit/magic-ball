@@ -1,81 +1,68 @@
 import "./style.css";
 import Shake from "shake.js";
 import { createSnow, showSnow } from "pure-snow.js";
+import * as htmlToImage from "html-to-image";
 import magSound from "../public/wob.mp3";
-import jb from "../public/jb.m4a";
 
 const mag = new Audio(magSound);
-const sound = new Audio(jb);
-
-let isPlaying = false;
-
 const fontSizethreshold = 85;
+let currentOption: string | undefined = undefined;
 
 const options = [
-  "Ваша давняя мечта сбудется.",
-  "Новое путешествие наполнит вашу жизнь непередаваемыми воспоминаниями.",
-  "Незнакомец скоро войдет в вашу жизнь поделиться с вами своим счастьем.",
-  "В ближайшем будущем вас ждут волнующие события.",
-  "У очень привлекательного человека есть для вас сообщение.",
-  "Прими свое прошлое без сожалений. Справляйся с настоящим уверенно. Смотри в глаза будущему без страха.",
-  "Вовремя начатые действия помогут вам противостоять судьбе.",
-  "Спроси себя, что из сделанного сегодня приблизит тебя к тому, кем ты хочешь стать завтра.",
-  "Один человек ищет дорогу к вашему сердцу.",
-  "Все согласны с тем, что вы лучший.",
-  "Удача благоволит смелым.",
-  "Хочешь быть счатливым? Действуй.",
-  "Если вы чувствуете, что правы, будьте тверды в своих намерениях.",
-  "Если вы чувствуете, что за это стоит бороться, боритесь.",
-  "Красивый, умный и любящий человек войдет в вашу жизнь.",
-  "Будьте осторожны, вашим врагом может оказаться сомнительный друг.",
-  "Верный друг встанет на вашу защиту.",
-  "Синица в руке лучше, чем журавль в небе.",
-  "Вас ждет начало нового пути.",
-  "Помните, что настоящему другу нужно ваше время, а не деньги.",
-  "В ближайшем будущем вам предстоит в чем-то рискнуть.",
-  "Игрок потеряет не только то, что имеет, но и то, чего у него нет.",
-  "Золотой шанс свалится на вас в этом месяце.",
-  "Крепкая дружба часто важнее страстного романа.",
-  "Хорошее время, чтобы завершить старые дела.",
-  "Ваша интуиция пытается вам что-то подсказать.",
-  "Скоро вы познакомитесь с человеком, который станет вам другом на всю жизнь.",
-  "Впереди вас ждет безграничное счастье.",
-  "Легкое сердце поможет вам пройти через все сложные времена.",
-  "С Новым годом вас ждут новые перспективы.",
-  "Человек никогда не бывает слишком стар, чтобы учиться.",
-  "Вас ждет приятный сюрприз.",
-  "От вас потребуется небольшое пожертвование. Это станет правильным решением.",
-  "Ваша улыбка откроет вам многие двери.",
-  "Вас ждет долгое путешествие, которые оправдает ваши ожидания.",
-  "Занимайтесь тем, что вы любите. Остальное встанет на свои места.",
-  "По-настоящему богатая жизнь невозможна без любви.",
+  "Ты забудешь переключиться на правильную ветку и запушишь прямо в `master`",
+  "Твоя следующая миграция базы данных пройдет без ошибок",
+  "Сегодня ты случайно решишь баг, который долго не давал покоя",
+  "Кто-то оставит комментарий в твоем PR, который полностью изменит твою реализацию",
+  "Скоро ты обнаружишь, что дебаггер — твой лучший друг",
+  "Забудешь про `git stash` и потеряешь важные изменения",
+  "В следующем спринте ты станешь героем команды благодаря оптимизации",
+  "Твоя следующая попытка настроить окружение пройдет без боли",
+  "Пакет, на который ты полагаешься, внезапно перестанет поддерживаться",
+  "Твой тест-кейс поймает критический баг в проде",
+  "Сегодня ты напишешь компонент, который идеально соответствует дизайну",
+  "Твоя CI/CD пайплайн внезапно перестанет работать на пустом месте",
+  "Ты забудешь добавить файл в `.gitignore` и будешь жалеть об этом",
+  "Запушишь .env с кредами от прода в master",
+  "Новая версия твоего любимого фреймворка сломает половину твоего проекта",
+  "Кто-то похвалит твой код на ревью",
+  "Ты потратишь час, пытаясь найти незакрытую скобку",
+  "Скоро ты найдешь библиотеку, которая сделает твою задачу в разы проще",
+  "Ты будешь разбираться с merge conflict на протяжении нескольких часов",
+  "Твое решение по доработке логики зарелизит проект до дедлайна",
+  "Сегодня ты поймешь, что лучше переписать модуль с нуля",
+  "Твоя команда наконец вернется к использованию jQuery",
+  "В коде появится `console.log('here')`, который попадет в прод",
+  "Сегодня ты станешь мастером использования `git rebase`",
+  "Ты случайно удалишь ветку, а затем долго будешь ее восстанавливать",
+  "Твой следующий PR будет принят без единого комментария",
+  "Перепишешь проект на другой фреймворк",
+  "Новая зависимость в проекте окажется полной головной болью",
+  "Кто-то предложит архитектурное решение, которое тебе не понравится, но оно сработает",
+  "Ты забудешь про `npm i` и удивишься, почему ничего не работает",
+  "Твой сайт заблокирует РКН",
+  "Уронишь прод (опять)",
+  "Начнешь менторить",
+  "Проспишь стендап (опять)",
+  "Будешь месяц разбираться с флаки тестами",
+  "Коллеги будут гадать почему тебе вообще платят зарплату",
+  "Заведешь блог по разработке или про мемы",
+  "Купишь эргономичную клавиатуру, но это не поможет",
+  "Будешь работать за лида",
+  "Тебе повысят грейд, но не зп",
+  "Выступишь на HolyJs",
 ];
 
 const main = document.querySelector("#ball");
 const answer = document.querySelector("#answer");
 const answerText = document.querySelector("#answer-text");
 const logo = document.querySelector("#logo");
-const soundImg = document.querySelector("#sound");
-const muteImg = document.querySelector("#mute");
-const textbox = document.querySelector("#textbox");
-const music = document.querySelector("#music-toggle");
+const shareLink = document.getElementById("share");
+
 let timeoutId: number | undefined = undefined;
 let timeoutId2: number | undefined = undefined;
 
 createSnow(); // creates snowflakes and generate css for them
 showSnow(true); // snow can be disabled using showSnow function
-
-music?.addEventListener("click", () => {
-  if (isPlaying) {
-    sound.pause();
-    isPlaying = false;
-  } else {
-    sound.play();
-    isPlaying = true;
-  }
-  soundImg?.classList.toggle("invisible");
-  muteImg?.classList.toggle("invisible");
-});
 
 function showNextPrediction() {
   clearTimeout(timeoutId);
@@ -83,10 +70,8 @@ function showNextPrediction() {
   answer?.classList.add("hide");
   logo?.classList.add("hide");
   main?.classList.add("shake");
-  textbox?.classList.add("hide-text-area");
 
   timeoutId2 = setTimeout(() => {
-    textbox?.classList.remove("hide-text-area");
     try {
       mag.play();
     } catch (e) {
@@ -97,6 +82,8 @@ function showNextPrediction() {
   timeoutId = setTimeout(() => {
     let pos = Math.round(Math.random() * (options.length - 1));
     const text = options[pos] || options[0];
+    currentOption = text;
+    shareLink?.classList.remove("invisible");
     if (text.length > fontSizethreshold) {
       answerText?.classList.add("small-font");
     } else {
@@ -119,3 +106,34 @@ var myShakeEvent = new Shake({
 myShakeEvent.start();
 
 window.addEventListener("shake", showNextPrediction, false);
+
+async function share(e: MouseEvent) {
+  e.preventDefault();
+  const ball = document.getElementById("ball");
+  const imageFiles = []; // Array to hold image files
+  const dataUrlBlob = await htmlToImage.toBlob(ball!, { pixelRatio: 4 });
+  // const response = await fetch(dataUrl);
+  // const blob = await response.blob();
+  const file = new File([dataUrlBlob!], `magic-ball-result.png`, {
+    type: "image/png",
+  });
+  imageFiles.push(file);
+
+  if (navigator.canShare && navigator.canShare({ files: imageFiles })) {
+    try {
+      await navigator.share({
+        title: "Mагический шар - Coder Edition",
+        text: `В 2025 мне нагадали: ${currentOption}. http://jem-space/ball`,
+        files: imageFiles,
+      });
+    } catch (err) {
+      console.error("Error sharing:", err);
+    }
+  } else {
+    console.log(
+      "Your browser doesn't support sharing files or there are no files to share."
+    );
+  }
+}
+
+document.getElementById("share")?.addEventListener("click", share);

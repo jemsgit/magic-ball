@@ -14,6 +14,7 @@
     "vite": "^6.0.1"
   },
   "dependencies": {
+    "html-to-image": "^1.11.11",
     "pure-snow.js": "^2.1.0",
     "shake.js": "^1.2.2",
     "three": "^0.171.0"

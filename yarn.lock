@@ -289,6 +289,11 @@ fsevents@~2.3.2, fsevents@~2.3.3:
   resolved "https://nexus.dev.lipt-soft.ru/repository/npm-common/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
+html-to-image@^1.11.11:
+  version "1.11.11"
+  resolved "https://nexus.dev.lipt-soft.ru/repository/npm-common/html-to-image/-/html-to-image-1.11.11.tgz#c0f8a34dc9e4b97b93ff7ea286eb8562642ebbea"
+  integrity sha512-9gux8QhvjRO/erSnDPv28noDZcPZmYE7e1vFsBLKLlRlKDSqNJYebj6Qz1TGd5lsRV+X+xYyjCKjuZdABinWjA==
+
 meshoptimizer@~0.18.1:
   version "0.18.1"
   resolved "https://nexus.dev.lipt-soft.ru/repository/npm-common/meshoptimizer/-/meshoptimizer-0.18.1.tgz#cdb90907f30a7b5b1190facd3b7ee6b7087797d8"

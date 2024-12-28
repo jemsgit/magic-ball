@@ -20,7 +20,7 @@ const options = [
   "Пакет, на который ты полагаешься, внезапно перестанет поддерживаться",
   "Твой тест-кейс поймает критический баг в проде",
   "Сегодня ты напишешь компонент, который идеально соответствует дизайну",
-  "Твоя CI/CD пайплайн внезапно перестанет работать на пустом месте",
+  "Твой пайплайн внезапно перестанет работать на пустом месте",
   "Ты забудешь добавить файл в `.gitignore` и будешь жалеть об этом",
   "Запушишь .env с кредами от прода в master",
   "Новая версия твоего любимого фреймворка сломает половину твоего проекта",
@@ -50,6 +50,21 @@ const options = [
   "Будешь работать за лида",
   "Тебе повысят грейд, но не зп",
   "Выступишь на HolyJs",
+  "Твоя PR-ветка будет называться fix-final-really-final",
+  "Получишь баг-репорт без шагов воспроизведения и с текстом 'не работает'",
+  "Упадет сервер, и тебе придется дебажить в пятницу вечером",
+  "Забудешь про дедлайн и вспомнишь только в день релиза",
+  "Кто-то сделает force-push в твою ветку",
+  "Будешь дебажить проблему, которая исправится после перезагрузки",
+  "Пропустишь важное сообщение в Slack, а потом пожалеешь об этом",
+  "Сделаешь hotfix на продакшене и сломаешь другой модуль",
+  "Перейдешь на проект с поддержкой IE и Symbian",
+  "На созвоне забудешь про вебку и микрофон и светанешь яйцами",
+  "Случайно отправишь дикпик лиду",
+  "СЕО услышит как ты на самом деле его называешь при коллегах",
+  "Коллеги увидят твой персональный Github и ужаснутся",
+  "Получишь 3000 звезд на Github",
+  "Наконец разберешься с чистой архитектурой",
 ];
 
 const main = document.querySelector("#ball");
@@ -57,6 +72,7 @@ const answer = document.querySelector("#answer");
 const answerText = document.querySelector("#answer-text");
 const logo = document.querySelector("#logo");
 const shareLink = document.getElementById("share");
+const downloadLink = document.getElementById("download");
 
 let timeoutId: number | undefined = undefined;
 let timeoutId2: number | undefined = undefined;
@@ -84,6 +100,7 @@ function showNextPrediction() {
     const text = options[pos] || options[0];
     currentOption = text;
     shareLink?.classList.remove("invisible");
+    downloadLink?.classList.remove("invisible");
     if (text.length > fontSizethreshold) {
       answerText?.classList.add("small-font");
     } else {
@@ -107,25 +124,37 @@ myShakeEvent.start();
 
 window.addEventListener("shake", showNextPrediction, false);
 
-async function share(e: MouseEvent) {
+async function download(e: MouseEvent) {
   e.preventDefault();
   const ball = document.getElementById("ball");
-  const imageFiles = []; // Array to hold image files
-  const dataUrlBlob = await htmlToImage.toBlob(ball!, { pixelRatio: 4 });
-  // const response = await fetch(dataUrl);
-  // const blob = await response.blob();
+  htmlToImage
+    .toPng(ball!, { pixelRatio: 4 })
+    .then((image) => {
+      const link = document.createElement("a");
+      link.download = `magic-ball-result.png`;
+      link.href = image;
+      link.click();
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+}
 
-  const file = new File([dataUrlBlob!], `magic-ball-result.png`, {
-    type: "image/png",
-  });
-  imageFiles.push(file);
-
-  if (navigator.canShare && navigator.canShare({ files: imageFiles })) {
+async function share(e: MouseEvent) {
+  e.preventDefault();
+  if (
+    navigator.canShare &&
+    navigator.canShare({
+      title: "Mагический шар - Coder Edition",
+      url: "https://jem-space.ru/ball",
+      text: `В 2025 мне нагадали: ${currentOption} `,
+    })
+  ) {
     try {
       await navigator.share({
         title: "Mагический шар - Coder Edition",
-        text: `В 2025 мне нагадали: ${currentOption}. http://jem-space/ball`,
-        files: imageFiles,
+        url: "https://jem-space.ru/ball",
+        text: `В 2025 мне нагадали: ${currentOption} `,
       });
     } catch (err) {
       console.error("Error sharing:", err);
@@ -137,4 +166,5 @@ async function share(e: MouseEvent) {
   }
 }
 
-document.getElementById("share")?.addEventListener("click", share);
+downloadLink?.addEventListener("click", download);
+shareLink?.addEventListener("click", share);

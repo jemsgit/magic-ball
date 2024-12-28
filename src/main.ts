@@ -114,6 +114,7 @@ async function share(e: MouseEvent) {
   const dataUrlBlob = await htmlToImage.toBlob(ball!, { pixelRatio: 4 });
   // const response = await fetch(dataUrl);
   // const blob = await response.blob();
+
   const file = new File([dataUrlBlob!], `magic-ball-result.png`, {
     type: "image/png",
   });

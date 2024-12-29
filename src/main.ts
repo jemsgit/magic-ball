@@ -154,8 +154,7 @@ async function share(e: MouseEvent) {
       await navigator.share({
         title: "Mагический шар - Coder Edition",
         text: `В 2025 мне нагадали: ${currentOption}.
-
-https://jem-space.ru/ball`,
+`,
         url: "https://jem-space.ru/ball",
       });
     } catch (err) {

@@ -44,6 +44,7 @@ p {
 }
 
 .ball {
+  z-index: 2;
   position: relative;
   margin: 0 auto 0;
   width: 90vmin;
@@ -55,11 +56,17 @@ p {
   border-radius: 50%;
   box-shadow: 2px 20px 20px rgb(28 28 28 / 47%);
   background-image: url(/public/ball.png);
+
   background-size: 100%;
   background-position: center center;
   background-repeat: no-repeat;
   transform: translate3d(0, 0, 0);
   perspective: 800px; /* Creates 3D depth */
+}
+
+.ball.snap {
+  background-image: url(/public/ball4.jpg);
+  border-radius: 0;
 }
 
 .ball-textbox {
@@ -78,7 +85,7 @@ p {
   border-radius: 50%;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  color: #e2eaf6;
+  color: #ffd700;
   line-height: 22.5px;
   font-family: "Noto Sans Armenian", "Noto Sans", sans-serif;
   text-align: center;
@@ -267,7 +274,7 @@ p {
 
 .header {
   background: black;
-  padding: 5px 20px;
+  padding: 10px 20px;
   text-align: center;
   color: #ffffff;
   flex-direction: row;

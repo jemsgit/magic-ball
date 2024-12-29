@@ -127,6 +127,7 @@ window.addEventListener("shake", showNextPrediction, false);
 async function download(e: MouseEvent) {
   e.preventDefault();
   const ball = document.getElementById("ball");
+  ball?.classList.add("snap");
   htmlToImage
     .toPng(ball!, { pixelRatio: 4 })
     .then((image) => {
@@ -137,6 +138,9 @@ async function download(e: MouseEvent) {
     })
     .catch((e) => {
       console.log(e);
+    })
+    .finally(() => {
+      ball?.classList.remove("snap");
     });
 }
 

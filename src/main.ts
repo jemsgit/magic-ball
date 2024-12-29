@@ -2,7 +2,7 @@ import "./style.css";
 import Shake from "shake.js";
 import { createSnow, showSnow } from "pure-snow.js";
 import * as htmlToImage from "html-to-image";
-import magSound from "../public/wob.mp3";
+import magSound from "../public/ding.mp3";
 
 const mag = new Audio(magSound);
 const fontSizethreshold = 85;
@@ -87,10 +87,17 @@ const downloadLink = document.getElementById("download");
 let timeoutId: number | undefined = undefined;
 let timeoutId2: number | undefined = undefined;
 
-createSnow(); // creates snowflakes and generate css for them
-showSnow(true); // snow can be disabled using showSnow function
+setTimeout(() => {
+  createSnow(); // creates snowflakes and generate css for them
+  showSnow(true); // snow can be disabled using showSnow function
+}, 2000);
 
-function showNextPrediction() {
+function showNextPrediction(e: Event) {
+  try {
+    e.stopPropagation();
+  } catch (error) {
+    console.log(error);
+  }
   clearTimeout(timeoutId);
   clearTimeout(timeoutId2);
   answer?.classList.add("hide");

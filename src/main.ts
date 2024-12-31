@@ -137,7 +137,7 @@ async function share(e: MouseEvent) {
     navigator.canShare &&
     navigator.canShare({
       title: "Mагический шар - Разгоны Edition",
-      url: "https://jem-space.ru/ball",
+      url: "https://jem-space.ru/speedup-ball",
       text: `В 2025 мне нагадали: ${currentOption} `,
     })
   ) {
@@ -146,7 +146,7 @@ async function share(e: MouseEvent) {
         title: "Mагический шар - Разгоны Edition",
         text: `В 2025 мне нагадали: ${currentOption}.
 `,
-        url: "https://jem-space.ru/ball",
+        url: "https://jem-space.ru/speedup-ball",
       });
     } catch (err) {
       console.error("Error sharing:", err);

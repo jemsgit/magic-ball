@@ -18,5 +18,6 @@
     "pure-snow.js": "^2.1.0",
     "shake.js": "^1.2.2",
     "three": "^0.171.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }

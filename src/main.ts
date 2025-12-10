@@ -55,12 +55,13 @@ const ballEl = document.getElementById("ball") as HTMLElement;
 const loaderEl = document.getElementById("ball-loader") as HTMLElement;
 
 const preloadImg = new Image();
-preloadImg.src = "/public/ball.png";
+preloadImg.src = "/fixed-gear-ball/assets/ball-aFRV5BfL.png";
 
 preloadImg.onload = () => {
   loaderEl.classList.add("hide");
   ballEl.classList.add("slide-in-elliptic-top-fwd");
-  ballEl.style.backgroundImage = 'url("/public/ball.png")';
+  ballEl.style.backgroundImage =
+    'url("/fixed-gear-ball/assets/ball-aFRV5BfL.png")';
 };
 
 const main = document.querySelector("#ball");

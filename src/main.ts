@@ -58,8 +58,8 @@ const logo = document.querySelector("#logo");
 const shareLink = document.getElementById("share");
 const downloadLink = document.getElementById("download");
 
-let timeoutId: number | undefined = undefined;
-let timeoutId2: number | undefined = undefined;
+let timeoutId: NodeJS.Timeout | undefined = undefined;
+let timeoutId2: NodeJS.Timeout | undefined = undefined;
 
 setTimeout(() => {
   createSnow(); // creates snowflakes and generate css for them

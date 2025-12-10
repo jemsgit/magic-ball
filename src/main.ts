@@ -57,6 +57,7 @@ const ballEl = document.getElementById("ball") as HTMLElement;
 const textbox = document.querySelector("#textbox") as HTMLElement;
 const answer = document.querySelector("#answer") as HTMLElement;
 const loaderEl = document.getElementById("ball-loader") as HTMLElement;
+const logo = document.querySelector("#logo") as HTMLElement;
 
 const preloadImg = new Image();
 preloadImg.src = ballImgUrl;
@@ -66,13 +67,14 @@ preloadImg.onload = () => {
   ballEl.classList.add("slide-in-elliptic-top-fwd");
   ballEl.classList.add("shadow");
   textbox.classList.add("rotating");
+  logo.classList.remove("hide");
   ballEl.style.backgroundImage = `url(${ballImgUrl})`;
 };
 
 const main = document.querySelector("#ball");
 
 const answerText = document.querySelector("#answer-text");
-const logo = document.querySelector("#logo");
+
 const shareLink = document.getElementById("share");
 const downloadLink = document.getElementById("download");
 

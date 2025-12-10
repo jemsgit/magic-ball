@@ -60,7 +60,7 @@ p {
   min-height: 340px;
   border-radius: 50%;
   box-shadow: 2px 20px 20px rgb(28 28 28 / 47%);
-  background-image: url(/public/ball.png);
+  /* background-image: url(/public/ball.png); */
 
   background-size: 100%;
   background-position: center center;
@@ -565,5 +565,29 @@ footer {
     transform: translateX(-50%) translateY(-50%) scaleY(1)
       rotate3d(0, 1, 0, 360deg);
     opacity: 1;
+  }
+}
+
+.loader {
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%);
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.loader.hide {
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
   }
 }

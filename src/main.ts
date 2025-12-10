@@ -51,6 +51,18 @@ const options = [
   "Отец пропьет твой вилсет (и это будет финансово правильно)",
 ];
 
+const ballEl = document.getElementById("ball") as HTMLElement;
+const loaderEl = document.getElementById("ball-loader") as HTMLElement;
+
+const preloadImg = new Image();
+preloadImg.src = "/public/ball.png";
+
+preloadImg.onload = () => {
+  loaderEl.classList.add("hide");
+  ballEl.classList.add("slide-in-elliptic-top-fwd");
+  ballEl.style.backgroundImage = 'url("/public/ball.png")';
+};
+
 const main = document.querySelector("#ball");
 const answer = document.querySelector("#answer");
 const answerText = document.querySelector("#answer-text");

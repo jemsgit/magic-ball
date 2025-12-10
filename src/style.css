@@ -110,10 +110,14 @@ p {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  animation: rotate-textbox 1s linear;
   transform-origin: center;
   transition: all 0.6s;
 }
+
+.ball-textbox.rotating {
+   animation: rotate-textbox 1s linear;
+}
+
 
 .initial {
   opacity: 1;
@@ -132,6 +136,7 @@ p {
   opacity: 0;
   animation: fadedown 1s;
 }
+
 
 .answer {
   animation: floating 6s linear infinite;
@@ -185,6 +190,9 @@ p {
   left: 0;
   box-shadow: inset 12px -12px 20px 2px black;
   z-index: -1;
+}
+
+.ball.shadow::after {
   animation: ball-rotate 1s linear;
 }
 

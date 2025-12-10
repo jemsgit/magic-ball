@@ -4,6 +4,8 @@ import { createSnow, showSnow } from "pure-snow.js";
 import * as htmlToImage from "html-to-image";
 import magSound from "../public/ding.mp3";
 
+import ballImgUrl from "../public/ball.png";
+
 const mag = new Audio(magSound);
 const fontSizethreshold = 85;
 let currentOption: string | undefined = undefined;
@@ -52,20 +54,23 @@ const options = [
 ];
 
 const ballEl = document.getElementById("ball") as HTMLElement;
+const textbox = document.querySelector("#textbox") as HTMLElement;
+const answer = document.querySelector("#answer") as HTMLElement;
 const loaderEl = document.getElementById("ball-loader") as HTMLElement;
 
 const preloadImg = new Image();
-preloadImg.src = "/fixed-gear-ball/assets/ball-aFRV5BfL.png";
+preloadImg.src = ballImgUrl;
 
 preloadImg.onload = () => {
   loaderEl.classList.add("hide");
   ballEl.classList.add("slide-in-elliptic-top-fwd");
-  ballEl.style.backgroundImage =
-    'url("/fixed-gear-ball/assets/ball-aFRV5BfL.png")';
+  ballEl.classList.add("shadow");
+  textbox.classList.add("rotating");
+  ballEl.style.backgroundImage = `url(${ballImgUrl})`;
 };
 
 const main = document.querySelector("#ball");
-const answer = document.querySelector("#answer");
+
 const answerText = document.querySelector("#answer-text");
 const logo = document.querySelector("#logo");
 const shareLink = document.getElementById("share");
